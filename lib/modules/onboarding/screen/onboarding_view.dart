@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kids_learning/modules/onboarding/data/models/character_model.dart';
+import 'package:kids_learning/modules/onboarding/screen/widgets/character_card.dart';
+import 'package:kids_learning/services/logger_service.dart';
 import 'package:kids_learning/utils/assets.dart';
 import 'package:kids_learning/utils/themes/app_colors.dart';
 import 'package:kids_learning/widgets/gaming_button.dart';
@@ -20,45 +23,53 @@ class _CharacterSelectorScreenState extends State<CharacterSelectorScreen> {
   // Replace these with your actual image paths
   final List<CharacterModel> characters = [
     CharacterModel(
-      name: "Buddy",
+      name: "Chintu",
       imagePath: Assets.imagesCharBird,
       backgroundColor: const Color(0xFFFFE5E5),
+      audioPath: "audios/english/english_chintu.mp3",
     ),
     CharacterModel(
-      name: "Luna",
+      name: "Gauri",
       imagePath: Assets.imagesCharCow,
       backgroundColor: const Color(0xFFE5F3FF),
+      audioPath: "audios/english/english_gauri.mp3",
     ),
     CharacterModel(
-      name: "Max",
+      name: "Moti",
       imagePath: Assets.imagesCharDog,
       backgroundColor: const Color(0xFFFFF5E5),
+      audioPath: "audios/english/english_moti.mp3",
     ),
     CharacterModel(
-      name: "Bella",
+      name: "Gudiya",
       imagePath: Assets.imagesCharDonkey,
       backgroundColor: const Color(0xFFE5FFE5),
+      audioPath: "audios/english/english_gudiya.mp3",
     ),
     CharacterModel(
-      name: "Rocky",
+      name: "Gajraj",
       imagePath: Assets.imagesCharElephant,
       backgroundColor: const Color(0xFFFBE5FF),
+      audioPath: "audios/english/english_gajraj.mp3",
     ),
     CharacterModel(
-      name: "Daisy",
+      name: "Chiku",
       imagePath: Assets.imagesCharFox,
       backgroundColor: const Color.fromARGB(255, 233, 229, 255),
+      audioPath: "audios/english/english_chiku.mp3",
     ),
-    CharacterModel(
-      name: "Golu",
-      imagePath: Assets.imagesCharOwl,
-      backgroundColor: const Color.fromARGB(255, 229, 255, 231),
-    ),
-    CharacterModel(
-      name: "Pinky",
-      imagePath: Assets.imagesCharRabbit,
-      backgroundColor: const Color.fromARGB(255, 255, 232, 229),
-    ),
+    // CharacterModel(
+    //   name: "Ullu",
+    //   imagePath: Assets.imagesCharOwl,
+    //   backgroundColor: const Color.fromARGB(255, 229, 255, 231),
+    //   audioPath: "",
+    // ),
+    // CharacterModel(
+    //   name: "Bunty",
+    //   imagePath: Assets.imagesCharRabbit,
+    //   backgroundColor: const Color.fromARGB(255, 255, 232, 229),
+    //   audioPath: "",
+    // ),
   ];
 
   @override
@@ -121,7 +132,7 @@ class _CharacterSelectorScreenState extends State<CharacterSelectorScreen> {
                     onPressed: selectedCharacterIndex != null
                         ? () {
                             // Handle character selection
-                            print(
+                            LoggerService.logInfo(
                               "Selected: ${characters[selectedCharacterIndex!].name}",
                             );
                           }
@@ -164,220 +175,6 @@ class _CharacterSelectorScreenState extends State<CharacterSelectorScreen> {
           ),
         ),
       ],
-    );
-  }
-}
-
-// Character Model
-class CharacterModel {
-  final String name;
-  final String imagePath;
-  final Color backgroundColor;
-
-  CharacterModel({
-    required this.name,
-    required this.imagePath,
-    required this.backgroundColor,
-  });
-}
-
-// Character Card Widget
-class CharacterCard extends StatefulWidget {
-  final CharacterModel character;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  const CharacterCard({
-    super.key,
-    required this.character,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  @override
-  State<CharacterCard> createState() => _CharacterCardState();
-}
-
-class _CharacterCardState extends State<CharacterCard>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _scaleAnimation;
-  late Animation<double> _bounceAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 300),
-      vsync: this,
-    );
-
-    _scaleAnimation = Tween<double>(
-      begin: 1.0,
-      end: 0.95,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
-
-    _bounceAnimation = Tween<double>(
-      begin: 0.0,
-      end: 10.0,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.elasticOut));
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: (_) => _controller.forward(),
-      onTapUp: (_) {
-        _controller.reverse();
-        widget.onTap();
-      },
-      onTapCancel: () => _controller.reverse(),
-      child: AnimatedBuilder(
-        animation: _controller,
-        builder: (context, child) {
-          return Transform.scale(
-            scale: _scaleAnimation.value,
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(24.r),
-                boxShadow: [
-                  BoxShadow(
-                    color: widget.isSelected
-                        ? const Color(0xFF5C4BDB).withOpacity(0.4)
-                        : Colors.black.withOpacity(0.08),
-                    blurRadius: widget.isSelected ? 20 : 10,
-                    offset: Offset(0, widget.isSelected ? 8 : 4),
-                    spreadRadius: widget.isSelected ? 2 : 0,
-                  ),
-                ],
-                border: Border.all(
-                  color: widget.isSelected
-                      ? const Color(0xFF5C4BDB)
-                      : Colors.transparent,
-                  width: 3,
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Character Image Container
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.all(12.w),
-                      decoration: BoxDecoration(
-                        color: widget.character.backgroundColor,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: AnimatedScale(
-                          scale: widget.isSelected ? 1.1 : 1.0,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                          child: Image.asset(
-                            widget.character.imagePath,
-                            width: 80.w,
-                            height: 80.w,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Icon(
-                                Icons.person,
-                                size: 60.sp,
-                                color: Colors.grey.shade400,
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  // Character Name
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 16.h),
-                    child: Text(
-                      widget.character.name,
-                      style: GoogleFonts.bubblegumSans(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: widget.isSelected
-                            ? const Color(0xFF5C4BDB)
-                            : const Color(0xFF424242),
-                      ),
-                    ),
-                  ),
-
-                  // Selected Indicator
-                  if (widget.isSelected)
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 12.h),
-                      child: AnimatedCheckmark(),
-                    ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-// Animated Checkmark Widget
-class AnimatedCheckmark extends StatefulWidget {
-  const AnimatedCheckmark({super.key});
-
-  @override
-  State<AnimatedCheckmark> createState() => _AnimatedCheckmarkState();
-}
-
-class _AnimatedCheckmarkState extends State<AnimatedCheckmark>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _scaleAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 400),
-      vsync: this,
-    );
-
-    _scaleAnimation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.elasticOut,
-    );
-
-    _controller.forward();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ScaleTransition(
-      scale: _scaleAnimation,
-      child: Container(
-        width: 28.w,
-        height: 28.w,
-        decoration: BoxDecoration(
-          color: const Color(0xFF5C4BDB),
-          shape: BoxShape.circle,
-        ),
-        child: Icon(Icons.check, color: Colors.white, size: 18.sp),
-      ),
     );
   }
 }

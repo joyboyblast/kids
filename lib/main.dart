@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_learning/routes/app_pages.dart';
+import 'package:kids_learning/services/audio_service.dart';
 import 'package:kids_learning/utils/themes/app_colors.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await AudioService().init();
   runApp(const MyApp());
 }
 

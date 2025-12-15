@@ -463,7 +463,7 @@ class _UniversalGamingButtonState extends State<UniversalGamingButton> {
                         ? Border.all(
                             color:
                                 widget.borderColor ??
-                                Colors.white.withOpacity(0.3),
+                                Colors.white.withValues(alpha: 0.3),
                             width: widget.borderWidth,
                           )
                         : null,
