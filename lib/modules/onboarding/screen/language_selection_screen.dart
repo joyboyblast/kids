@@ -234,7 +234,7 @@ class _LanguageSelectorScreenState extends State<LanguageSelectorScreen>
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF5C4BDB).withOpacity(0.2),
+                color: const Color(0xFF5C4BDB).withValues(alpha: 0.2),
                 blurRadius: 15,
                 offset: const Offset(0, 5),
               ),

@@ -28,4 +28,37 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get pickFavorite => 'তোমার প্রিয় চরিত্র নির্বাচন করো!';
+
+  @override
+  String get chintu => 'চিন্টু';
+
+  @override
+  String get gauri => 'গৌরী';
+
+  @override
+  String get moti => 'মতি';
+
+  @override
+  String get gudiya => 'গুড়িয়া';
+
+  @override
+  String get gajraj => 'গজরাজ';
+
+  @override
+  String get chiku => 'চিকু';
+
+  @override
+  String get somethingWentWrong => 'কিছু ভুল হয়েছে!';
+
+  @override
+  String get success => 'সফল';
+
+  @override
+  String get error => 'ত্রুটি';
+
+  @override
+  String get warning => 'সতর্কতা';
+
+  @override
+  String get info => 'তথ্য';
 }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_learning/l10n/app_localizations.dart';
+import 'package:kids_learning/modules/onboarding/bloc/onboarding_bloc.dart';
 import 'package:kids_learning/routes/app_pages.dart';
 import 'package:kids_learning/services/audio_service.dart';
 import 'package:kids_learning/services/locale_service.dart';
+import 'package:kids_learning/services/snackbar_service.dart';
 import 'package:kids_learning/utils/themes/app_colors.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -24,18 +27,19 @@ class MyApp extends StatefulWidget {
   const MyApp({super.key, this.initialLocale});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<MyApp> createState() => MyAppState();
 
-  static _MyAppState of(BuildContext context) =>
-      context.findAncestorStateOfType<_MyAppState>()!;
+  static MyAppState of(BuildContext context) =>
+      context.findAncestorStateOfType<MyAppState>()!;
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppState extends State<MyApp> {
   late Locale _locale;
 
   @override
   void initState() {
     super.initState();
+
     // Set initial locale from saved preference or default to English
     _locale = widget.initialLocale != null
         ? Locale(widget.initialLocale!)
@@ -77,6 +81,15 @@ class _MyAppState extends State<MyApp> {
           Locale('bn'), // Bengali
         ],
         routerConfig: router,
+        builder: (context, child) {
+          // Initialize SnackbarService with context here
+          SnackbarService.initialize(context);
+
+          return MultiBlocProvider(
+            providers: [BlocProvider(create: (_) => OnboardingBloc())],
+            child: child!,
+          );
+        },
       ),
     );
   }

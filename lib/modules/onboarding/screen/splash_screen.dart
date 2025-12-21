@@ -138,7 +138,7 @@ class _SplashScreenState extends State<SplashScreen>
                       // Added slight shadow for depth
                       shadows: [
                         Shadow(
-                          color: Colors.black.withOpacity(0.1),
+                          color: Colors.black.withValues(alpha: 0.1),
                           offset: const Offset(2, 2),
                           blurRadius: 4,
                         ),

@@ -47,6 +47,7 @@ dependencies:
   shared_preferences: ^2.5.4
   intl: ^0.20.2
   lottie: ^3.3.2
+  awesome_snackbar_content: ^0.1.8
 
 dev_dependencies:
   flutter_test:
@@ -76,9 +77,9 @@ flutter:
     - assets/animations/
     - assets/images/
     - assets/icons/
-    - assets/audios/english/
-    - assets/audios/bengali/
-    - assets/audios/hindi/
+    - assets/audios/en/
+    - assets/audios/bn/
+    - assets/audios/hi/
     - assets/audios/ui/
 
   # An image asset can refer to one or more resolution-specific "variants", see

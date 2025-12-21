@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart'; // 1. Import this
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kids_learning/audio/audio_player_service.dart';
 import 'package:kids_learning/modules/onboarding/data/models/character_model.dart';
 
 class CharacterCard extends StatefulWidget {
@@ -49,28 +50,16 @@ class _CharacterCardState extends State<CharacterCard>
     super.dispose();
   }
 
-  // 5. Function to handle audio playback
-  Future<void> _playAudio() async {
-    try {
-      // Optional: Stop previous sound if user taps rapidly
-      await _audioPlayer.stop();
-
-      // Use AssetSource if the file is in your assets folder.
-      // Note: AssetSource automatically assumes 'assets/' prefix usually,
-      // so if your path is 'assets/audio/sound.mp3', pass 'audio/sound.mp3'.
-      await _audioPlayer.play(AssetSource(widget.character.audioPath));
-    } catch (e) {
-      debugPrint("Error playing audio: $e");
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (_) => _controller.forward(),
       onTapUp: (_) {
         _controller.reverse();
-        _playAudio(); // 6. Trigger audio play here
+        AudioPlayerService.instance.playLocalized(
+          context: context,
+          key: widget.character.audioKey,
+        );
         widget.onTap();
       },
       onTapCancel: () => _controller.reverse(),

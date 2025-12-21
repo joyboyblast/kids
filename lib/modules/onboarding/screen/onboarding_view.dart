@@ -1,14 +1,24 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kids_learning/audio/audio_key.dart';
+import 'package:kids_learning/audio/audio_player_service.dart';
+import 'package:kids_learning/l10n/app_localizations.dart';
+import 'package:kids_learning/modules/onboarding/bloc/onboarding_bloc.dart';
+import 'package:kids_learning/modules/onboarding/bloc/onboarding_event.dart';
+import 'package:kids_learning/modules/onboarding/bloc/onboarding_state.dart';
 import 'package:kids_learning/modules/onboarding/data/models/character_model.dart';
 import 'package:kids_learning/modules/onboarding/screen/widgets/character_card.dart';
+import 'package:kids_learning/routes/app_routes.dart';
 import 'package:kids_learning/services/logger_service.dart';
+import 'package:kids_learning/services/snackbar_service.dart';
 import 'package:kids_learning/utils/assets.dart';
 import 'package:kids_learning/utils/themes/app_colors.dart';
 import 'package:kids_learning/widgets/gaming_button.dart';
 
-// Main Character Selector Screen
 class CharacterSelectorScreen extends StatefulWidget {
   const CharacterSelectorScreen({super.key});
 
@@ -19,72 +29,100 @@ class CharacterSelectorScreen extends StatefulWidget {
 
 class _CharacterSelectorScreenState extends State<CharacterSelectorScreen> {
   int? selectedCharacterIndex;
+  late final List<CharacterModel> characters;
+  Timer? _audioTimer;
 
-  // Replace these with your actual image paths
-  final List<CharacterModel> characters = [
-    CharacterModel(
-      name: "Chintu",
-      imagePath: Assets.imagesCharBird,
-      backgroundColor: const Color(0xFFFFE5E5),
-      audioPath: "audios/english/english_chintu.mp3",
-    ),
-    CharacterModel(
-      name: "Gauri",
-      imagePath: Assets.imagesCharCow,
-      backgroundColor: const Color(0xFFE5F3FF),
-      audioPath: "audios/english/english_gauri.mp3",
-    ),
-    CharacterModel(
-      name: "Moti",
-      imagePath: Assets.imagesCharDog,
-      backgroundColor: const Color(0xFFFFF5E5),
-      audioPath: "audios/english/english_moti.mp3",
-    ),
-    CharacterModel(
-      name: "Gudiya",
-      imagePath: Assets.imagesCharDonkey,
-      backgroundColor: const Color(0xFFE5FFE5),
-      audioPath: "audios/english/english_gudiya.mp3",
-    ),
-    CharacterModel(
-      name: "Gajraj",
-      imagePath: Assets.imagesCharElephant,
-      backgroundColor: const Color(0xFFFBE5FF),
-      audioPath: "audios/english/english_gajraj.mp3",
-    ),
-    CharacterModel(
-      name: "Chiku",
-      imagePath: Assets.imagesCharFox,
-      backgroundColor: const Color.fromARGB(255, 233, 229, 255),
-      audioPath: "audios/english/english_chiku.mp3",
-    ),
-    // CharacterModel(
-    //   name: "Ullu",
-    //   imagePath: Assets.imagesCharOwl,
-    //   backgroundColor: const Color.fromARGB(255, 229, 255, 231),
-    //   audioPath: "",
-    // ),
-    // CharacterModel(
-    //   name: "Bunty",
-    //   imagePath: Assets.imagesCharRabbit,
-    //   backgroundColor: const Color.fromARGB(255, 255, 232, 229),
-    //   audioPath: "",
-    // ),
-  ];
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    final l10n = AppLocalizations.of(context)!;
+
+    characters = [
+      CharacterModel(
+        key: "chintu ",
+        name: l10n.chintu,
+        imagePath: Assets.imagesCharBird,
+        backgroundColor: const Color(0xFFFFE5E5),
+        audioKey: AudioKey.chintu,
+      ),
+      CharacterModel(
+        key: "gauri",
+        name: l10n.gauri,
+        imagePath: Assets.imagesCharCow,
+        backgroundColor: const Color(0xFFE5F3FF),
+        audioKey: AudioKey.gauri,
+      ),
+      CharacterModel(
+        key: "moti",
+        name: l10n.moti,
+        imagePath: Assets.imagesCharDog,
+        backgroundColor: const Color(0xFFFFF5E5),
+        audioKey: AudioKey.moti,
+      ),
+      CharacterModel(
+        key: "gudiya",
+        name: l10n.gudiya,
+        imagePath: Assets.imagesCharDonkey,
+        backgroundColor: const Color(0xFFE5FFE5),
+        audioKey: AudioKey.gudiya,
+      ),
+      CharacterModel(
+        key: "gajaraj",
+        name: l10n.gajraj,
+        imagePath: Assets.imagesCharElephant,
+        backgroundColor: const Color(0xFFFBE5FF),
+        audioKey: AudioKey.gajraj,
+      ),
+      CharacterModel(
+        key: "chiku",
+        name: l10n.chiku,
+        imagePath: Assets.imagesCharFox,
+        backgroundColor: const Color(0xFFE9E5FF),
+        audioKey: AudioKey.chiku,
+      ),
+    ];
+
+    // Play audio on first load
+    _playChooseYourFriendAudio();
+    // Start timer for repeating audio every 5 seconds
+    _startAudioTimer();
+  }
+
+  void _playChooseYourFriendAudio() {
+    AudioPlayerService.instance.playLocalized(
+      context: context,
+      key: AudioKey.choose_your_friend,
+    );
+  }
+
+  void _startAudioTimer() {
+    // Cancel existing timer if any
+    _audioTimer?.cancel();
+
+    // Play audio every 5 seconds only if no character is selected
+    _audioTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      // Only play audio if no character is selected
+      if (selectedCharacterIndex == null && mounted) {
+        _playChooseYourFriendAudio();
+      } else {
+        // Stop timer if character is selected
+        timer.cancel();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              const Color(0xFFFFF9E6),
-              const Color(0xFFE6F4FF),
-              const Color(0xFFFFE6F0),
-            ],
+            colors: [Color(0xFFFFF9E6), Color(0xFFE6F4FF), Color(0xFFFFE6F0)],
           ),
         ),
         child: SafeArea(
@@ -92,12 +130,8 @@ class _CharacterSelectorScreenState extends State<CharacterSelectorScreen> {
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: Column(
               children: [
-                // Header
-                _buildHeader(),
-
+                _buildHeader(l10n),
                 SizedBox(height: 30.h),
-
-                // Character Grid
                 Expanded(
                   child: GridView.builder(
                     physics: const BouncingScrollPhysics(),
@@ -116,34 +150,49 @@ class _CharacterSelectorScreenState extends State<CharacterSelectorScreen> {
                           setState(() {
                             selectedCharacterIndex = index;
                           });
+                          // Cancel timer when character is selected
+                          _audioTimer?.cancel();
                         },
                       );
                     },
                   ),
                 ),
-
                 SizedBox(height: 20.h),
-
-                // Continue Button
                 AnimatedOpacity(
                   opacity: selectedCharacterIndex != null ? 1.0 : 0.5,
                   duration: const Duration(milliseconds: 300),
-                  child: UniversalGamingButton(
-                    onPressed: selectedCharacterIndex != null
-                        ? () {
-                            // Handle character selection
-                            LoggerService.logInfo(
-                              "Selected: ${characters[selectedCharacterIndex!].name}",
-                            );
-                          }
-                        : () {},
-                    width: 320.w,
-                    height: 50,
-                    text: "LET'S GO!",
-                    textStyle: GoogleFonts.bubblegumSans(
-                      color: AppColors.white,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.bold,
+                  child: BlocListener<OnboardingBloc, OnboardingState>(
+                    listener: (context, state) {
+                      if (state is OnboardingErrorState) {
+                        LoggerService.logError(
+                          'Error during friend selection: ${state.message}',
+                        );
+                        SnackbarService().showError(
+                          message: l10n.somethingWentWrong,
+                        );
+                      }
+
+                      if (state is FriendSelectionState) {
+                        context.pushNamed(Names.home);
+                      }
+                    },
+                    child: UniversalGamingButton(
+                      width: 320.w,
+                      height: 50,
+                      onPressed: () {
+                        context.read<OnboardingBloc>().add(
+                          FriendSelectionEvent(
+                            selectedFriend:
+                                characters[selectedCharacterIndex ?? 0].key,
+                          ),
+                        );
+                      },
+                      text: l10n.letsGo,
+                      textStyle: GoogleFonts.bubblegumSans(
+                        color: AppColors.white,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
@@ -155,11 +204,11 @@ class _CharacterSelectorScreenState extends State<CharacterSelectorScreen> {
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(AppLocalizations l10n) {
     return Column(
       children: [
         Text(
-          "Choose Your Friend",
+          l10n.chooseYourFriend,
           style: GoogleFonts.bubblegumSans(
             fontSize: 32.sp,
             fontWeight: FontWeight.bold,
@@ -168,7 +217,7 @@ class _CharacterSelectorScreenState extends State<CharacterSelectorScreen> {
         ),
         SizedBox(height: 8.h),
         Text(
-          "Pick your favorite character!",
+          l10n.pickFavorite,
           style: GoogleFonts.bubblegumSans(
             fontSize: 16.sp,
             color: const Color(0xFF9E9E9E),
@@ -176,5 +225,11 @@ class _CharacterSelectorScreenState extends State<CharacterSelectorScreen> {
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _audioTimer?.cancel();
+    super.dispose();
   }
 }

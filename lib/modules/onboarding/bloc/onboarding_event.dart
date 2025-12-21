@@ -6,3 +6,12 @@ sealed class OnboardingEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+final class FriendSelectionEvent extends OnboardingEvent {
+  final String selectedFriend;
+
+  const FriendSelectionEvent({required this.selectedFriend});
+
+  @override
+  List<Object> get props => [selectedFriend];
+}

@@ -3,7 +3,18 @@
   "selectPreferred": "তোমার পছন্দের ভাষা নির্বাচন করো",
   "english": "English (ইংরেজি)",
   "bengali": "বাংলা",
-  "letsGo": "চলো শুরু করি!",
   "chooseYourFriend": "তোমার বন্ধু বেছে নাও",
-  "pickFavorite": "তোমার প্রিয় চরিত্র নির্বাচন করো!"
+  "pickFavorite": "তোমার প্রিয় চরিত্র নির্বাচন করো!",
+  "letsGo": "চলো শুরু করি!",
+  "chintu": "চিন্টু",
+  "gauri": "গৌরী",
+  "moti": "মতি",
+  "gudiya": "গুড়িয়া",
+  "gajraj": "গজরাজ",
+  "chiku": "চিকু",
+  "somethingWentWrong": "কিছু ভুল হয়েছে!",
+  "success": "সফল",
+  "error": "ত্রুটি",
+  "warning": "সতর্কতা",
+  "info": "তথ্য"
 }

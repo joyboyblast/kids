@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kids_learning/services/logger_service.dart';
 
 /// A highly customizable gaming-style button with smooth animations, sounds, and haptic feedback
 class UniversalGamingButton extends StatefulWidget {
@@ -220,11 +221,11 @@ class _UniversalGamingButtonState extends State<UniversalGamingButton> {
     if (!widget.enableSound) return;
 
     try {
-      final soundPath = widget.customSoundPath ?? "audios/button_press.wav";
+      final soundPath = widget.customSoundPath ?? "audios/ui/button_press.wav";
       await _audioPlayer.stop();
       await _audioPlayer.play(AssetSource(soundPath), volume: 1.0);
     } catch (e) {
-      debugPrint('Sound playback failed: $e');
+      LoggerService.logError('Sound playback failed: $e');
     }
   }
 

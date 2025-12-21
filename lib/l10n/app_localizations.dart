@@ -98,47 +98,113 @@ abstract class AppLocalizations {
     Locale('en'),
   ];
 
-  /// Language selection title
+  /// No description provided for @chooseLanguage.
   ///
   /// In en, this message translates to:
   /// **'Choose Your Language'**
   String get chooseLanguage;
 
-  /// Language selection subtitle
+  /// No description provided for @selectPreferred.
   ///
   /// In en, this message translates to:
   /// **'Select your preferred language'**
   String get selectPreferred;
 
-  /// English language option
+  /// No description provided for @english.
   ///
   /// In en, this message translates to:
   /// **'English'**
   String get english;
 
-  /// Bengali language option
+  /// No description provided for @bengali.
   ///
   /// In en, this message translates to:
   /// **'বাংলা (Bengali)'**
   String get bengali;
 
-  /// Continue button text
+  /// No description provided for @letsGo.
   ///
   /// In en, this message translates to:
   /// **'LET\'S GO!'**
   String get letsGo;
 
-  /// Character selection title
+  /// No description provided for @chooseYourFriend.
   ///
   /// In en, this message translates to:
   /// **'Choose Your Friend'**
   String get chooseYourFriend;
 
-  /// Character selection subtitle
+  /// No description provided for @pickFavorite.
   ///
   /// In en, this message translates to:
   /// **'Pick your favorite character!'**
   String get pickFavorite;
+
+  /// No description provided for @chintu.
+  ///
+  /// In en, this message translates to:
+  /// **'Chintu'**
+  String get chintu;
+
+  /// No description provided for @gauri.
+  ///
+  /// In en, this message translates to:
+  /// **'Gauri'**
+  String get gauri;
+
+  /// No description provided for @moti.
+  ///
+  /// In en, this message translates to:
+  /// **'Moti'**
+  String get moti;
+
+  /// No description provided for @gudiya.
+  ///
+  /// In en, this message translates to:
+  /// **'Gudiya'**
+  String get gudiya;
+
+  /// No description provided for @gajraj.
+  ///
+  /// In en, this message translates to:
+  /// **'Gajraj'**
+  String get gajraj;
+
+  /// No description provided for @chiku.
+  ///
+  /// In en, this message translates to:
+  /// **'Chiku'**
+  String get chiku;
+
+  /// No description provided for @somethingWentWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong!'**
+  String get somethingWentWrong;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get success;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// No description provided for @warning.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning'**
+  String get warning;
+
+  /// No description provided for @info.
+  ///
+  /// In en, this message translates to:
+  /// **'Info'**
+  String get info;
 }
 
 class _AppLocalizationsDelegate

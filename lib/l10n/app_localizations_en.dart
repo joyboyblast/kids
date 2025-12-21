@@ -28,4 +28,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pickFavorite => 'Pick your favorite character!';
+
+  @override
+  String get chintu => 'Chintu';
+
+  @override
+  String get gauri => 'Gauri';
+
+  @override
+  String get moti => 'Moti';
+
+  @override
+  String get gudiya => 'Gudiya';
+
+  @override
+  String get gajraj => 'Gajraj';
+
+  @override
+  String get chiku => 'Chiku';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong!';
+
+  @override
+  String get success => 'Success';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get warning => 'Warning';
+
+  @override
+  String get info => 'Info';
 }

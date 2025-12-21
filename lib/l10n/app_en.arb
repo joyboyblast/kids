@@ -1,30 +1,20 @@
 {
   "chooseLanguage": "Choose Your Language",
-  "@chooseLanguage": {
-    "description": "Language selection title"
-  },
   "selectPreferred": "Select your preferred language",
-  "@selectPreferred": {
-    "description": "Language selection subtitle"
-  },
   "english": "English",
-  "@english": {
-    "description": "English language option"
-  },
   "bengali": "বাংলা (Bengali)",
-  "@bengali": {
-    "description": "Bengali language option"
-  },
   "letsGo": "LET'S GO!",
-  "@letsGo": {
-    "description": "Continue button text"
-  },
   "chooseYourFriend": "Choose Your Friend",
-  "@chooseYourFriend": {
-    "description": "Character selection title"
-  },
   "pickFavorite": "Pick your favorite character!",
-  "@pickFavorite": {
-    "description": "Character selection subtitle"
-  }
+  "chintu": "Chintu",
+  "gauri": "Gauri",
+  "moti": "Moti",
+  "gudiya": "Gudiya",
+  "gajraj": "Gajraj",
+  "chiku": "Chiku",
+  "somethingWentWrong": "Something went wrong!",
+  "success": "Success",
+  "error": "Error",
+  "warning": "Warning",
+  "info": "Info"
 }
