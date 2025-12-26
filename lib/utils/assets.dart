@@ -6,53 +6,61 @@ class Assets {
   /// assets/animations/splash_animation.json
   static const String animationsSplashAnimation = "assets/animations/splash_animation.json";
 
-  /// Assets for audiosBengaliBengaliChiku
-  /// assets/audios/bengali/bengali_chiku.wav
-  static const String audiosBengaliBengaliChiku = "assets/audios/bengali/bengali_chiku.wav";
+  /// Assets for audiosBnChiku
+  /// assets/audios/bn/chiku.wav
+  static const String audiosBnChiku = "assets/audios/bn/chiku.wav";
 
-  /// Assets for audiosBengaliBengaliChintu
-  /// assets/audios/bengali/bengali_chintu.wav
-  static const String audiosBengaliBengaliChintu = "assets/audios/bengali/bengali_chintu.wav";
+  /// Assets for audiosBnChintu
+  /// assets/audios/bn/chintu.wav
+  static const String audiosBnChintu = "assets/audios/bn/chintu.wav";
 
-  /// Assets for audiosBengaliBengaliGajraj
-  /// assets/audios/bengali/bengali_gajraj.wav
-  static const String audiosBengaliBengaliGajraj = "assets/audios/bengali/bengali_gajraj.wav";
+  /// Assets for audiosBnChooseYourFriend
+  /// assets/audios/bn/choose_your_friend.wav
+  static const String audiosBnChooseYourFriend = "assets/audios/bn/choose_your_friend.wav";
 
-  /// Assets for audiosBengaliBengaliGauri
-  /// assets/audios/bengali/bengali_gauri.wav
-  static const String audiosBengaliBengaliGauri = "assets/audios/bengali/bengali_gauri.wav";
+  /// Assets for audiosBnGajraj
+  /// assets/audios/bn/gajraj.wav
+  static const String audiosBnGajraj = "assets/audios/bn/gajraj.wav";
 
-  /// Assets for audiosBengaliBengaliGudiya
-  /// assets/audios/bengali/bengali_gudiya.wav
-  static const String audiosBengaliBengaliGudiya = "assets/audios/bengali/bengali_gudiya.wav";
+  /// Assets for audiosBnGauri
+  /// assets/audios/bn/gauri.wav
+  static const String audiosBnGauri = "assets/audios/bn/gauri.wav";
 
-  /// Assets for audiosBengaliBengaliMoti
-  /// assets/audios/bengali/bengali_moti.wav
-  static const String audiosBengaliBengaliMoti = "assets/audios/bengali/bengali_moti.wav";
+  /// Assets for audiosBnGudiya
+  /// assets/audios/bn/gudiya.wav
+  static const String audiosBnGudiya = "assets/audios/bn/gudiya.wav";
 
-  /// Assets for audiosEnglishEnglishChiku
-  /// assets/audios/english/english_chiku.mp3
-  static const String audiosEnglishEnglishChiku = "assets/audios/english/english_chiku.mp3";
+  /// Assets for audiosBnMoti
+  /// assets/audios/bn/moti.wav
+  static const String audiosBnMoti = "assets/audios/bn/moti.wav";
 
-  /// Assets for audiosEnglishEnglishChintu
-  /// assets/audios/english/english_chintu.mp3
-  static const String audiosEnglishEnglishChintu = "assets/audios/english/english_chintu.mp3";
+  /// Assets for audiosEnChiku
+  /// assets/audios/en/chiku.wav
+  static const String audiosEnChiku = "assets/audios/en/chiku.wav";
 
-  /// Assets for audiosEnglishEnglishGajraj
-  /// assets/audios/english/english_gajraj.mp3
-  static const String audiosEnglishEnglishGajraj = "assets/audios/english/english_gajraj.mp3";
+  /// Assets for audiosEnChintu
+  /// assets/audios/en/chintu.wav
+  static const String audiosEnChintu = "assets/audios/en/chintu.wav";
 
-  /// Assets for audiosEnglishEnglishGauri
-  /// assets/audios/english/english_gauri.mp3
-  static const String audiosEnglishEnglishGauri = "assets/audios/english/english_gauri.mp3";
+  /// Assets for audiosEnChooseYourFriend
+  /// assets/audios/en/choose_your_friend.wav
+  static const String audiosEnChooseYourFriend = "assets/audios/en/choose_your_friend.wav";
 
-  /// Assets for audiosEnglishEnglishGudiya
-  /// assets/audios/english/english_gudiya.mp3
-  static const String audiosEnglishEnglishGudiya = "assets/audios/english/english_gudiya.mp3";
+  /// Assets for audiosEnGajraj
+  /// assets/audios/en/gajraj.wav
+  static const String audiosEnGajraj = "assets/audios/en/gajraj.wav";
 
-  /// Assets for audiosEnglishEnglishMoti
-  /// assets/audios/english/english_moti.mp3
-  static const String audiosEnglishEnglishMoti = "assets/audios/english/english_moti.mp3";
+  /// Assets for audiosEnGauri
+  /// assets/audios/en/gauri.wav
+  static const String audiosEnGauri = "assets/audios/en/gauri.wav";
+
+  /// Assets for audiosEnGudiya
+  /// assets/audios/en/gudiya.wav
+  static const String audiosEnGudiya = "assets/audios/en/gudiya.wav";
+
+  /// Assets for audiosEnMoti
+  /// assets/audios/en/moti.wav
+  static const String audiosEnMoti = "assets/audios/en/moti.wav";
 
   /// Assets for audiosUiBgAudio
   /// assets/audios/ui/bg_audio.mp3
@@ -113,5 +121,9 @@ class Assets {
   /// Assets for imagesCharRabbit
   /// assets/images/char_rabbit.png
   static const String imagesCharRabbit = "assets/images/char_rabbit.png";
+
+  /// Assets for imagesHomeBg
+  /// assets/images/home_bg.jpg
+  static const String imagesHomeBg = "assets/images/home_bg.jpg";
 }
 
