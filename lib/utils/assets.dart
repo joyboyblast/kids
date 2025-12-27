@@ -122,8 +122,12 @@ class Assets {
   /// assets/images/char_rabbit.png
   static const String imagesCharRabbit = "assets/images/char_rabbit.png";
 
+  /// Assets for imagesGajrajPop
+  /// assets/images/gajraj_pop.png
+  static const String imagesGajrajPop = "assets/images/gajraj_pop.png";
+
   /// Assets for imagesHomeBg
-  /// assets/images/home_bg.jpg
-  static const String imagesHomeBg = "assets/images/home_bg.jpg";
+  /// assets/images/home_bg.png
+  static const String imagesHomeBg = "assets/images/home_bg.png";
 }
 

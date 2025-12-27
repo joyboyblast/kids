@@ -8,7 +8,22 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Image.asset(Assets.imagesHomeBg, fit: BoxFit.cover, height: 100.sh),
+      body: SizedBox(
+        height: 100.sh,
+        width: 100.sw,
+        child: Stack(
+          children: [
+            Image.asset(Assets.imagesHomeBg, fit: BoxFit.cover, height: 100.sh),
+            Align(
+              alignment: AlignmentGeometry.topLeft,
+              child: Padding(
+                padding: EdgeInsets.only(top: 40, left: 16),
+                child: Image.asset(Assets.imagesGajrajPop, width: 100.w),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
